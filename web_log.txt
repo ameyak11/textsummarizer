@@ -1,0 +1,7 @@
+
+---------------------------------
+Summarizating article : The NEP’s four year degree proposal: Lessons from the DU experience
+Summary generated successfully
+Generated demo summarized article object
+Saved demo summarized article object
+ Returning json
