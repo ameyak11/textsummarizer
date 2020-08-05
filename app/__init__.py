@@ -5,7 +5,7 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 #instance of Flask app
-app = Flask(__name__)
+application = app = Flask(__name__)
 
 print "importing webv1 blueprint registered "
 from . import webv1 as webv1
