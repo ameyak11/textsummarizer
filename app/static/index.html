@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html ng-app="vartaApp" ng-cloak>
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material Library css-->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css"> 
+    <!-- For rating-->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Angular Material Library js-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <!--My js file -->
+    <script type="text/javascript" src="app.js"></script>
+    <!--For rating -->
+    <link href="star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js" integrity="sha256-8oQ1OnzE2X9v4gpRVRMb1DWHoPHJilbur1LP9ykQ9H0=" crossorigin="anonymous"></script>
+    <script src="star-rating.js" type="text/javascript"></script> 
+    <!--icon-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Bar Graph -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+    <!-- My css file-->
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+  <body>
+  <div id="container" ng-controller="formController">
+    <div layout="column">
+      <!-- <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h1 md-truncate flex>Varta</h1>
+          <h2>Count:{{count}}</h2>
+          <img src="res/beta.png" alt="Beta" height="100%" width="auto">
+        </div>
+      </md-toolbar> -->
+    </div>
+    <div layout="row">
+      <div flex-gt-sm="10" flex-sm="0" flex-xs="0">
+      </div>
+      <div layout="column" flex-gt-sm="80" flex-sm="100" flex-xs="100" >
+        <md-card layout-padding ng-show="showCard">
+        <div>
+          <md-content layout-padding>
+            <form name="myForm">
+            <md-input-container class="md-block">
+              <label>Link</label>
+              <input required name="link" ng-model="article.link" id="article_link">
+              <div ng-messages="myForm.link.$error">
+              <div ng-message="required">Link is required.</div>
+              </div>
+            </md-input-container>
+          </form>
+          </md-content>
+          <div layout="row">
+            <div flex-gt-sm="40" flex-sm="40" flex-xs="40">
+            </div>
+            <div flex="20" flex-sm="20" flex-xs="20" layout-align="center center">
+                <md-button ng-click="summarizeLinkClicked()" ng-disabled="myForm.$invalid" class="md-raised md-primary">Summmarize</md-button>
+            </div>
+            <div flex="40" flex-sm="40" flex-xs="40">
+            </div>
+          </div>
+          <div style="width: 100%; height: 40px; border-bottom: 1px solid #2683c6; text-align: center">
+            <span><h4>
+              Enter Link OR Article
+            </h4>
+            </span>
+          </div>
+        </div>
+        <form name="articleForm">
+        <div>
+          <md-content layout-padding>
+            <md-input-container class="md-block">
+              <label>Title</label>
+              <input required name="title" ng-model="article.title" id="article_title">
+              <div ng-messages="projectForm.title.$error">
+              <div ng-message="required">Title is required.</div>
+              </div>
+            </md-input-container>
+          </md-content>          
+        </div>
+        <div>
+            <h3>Content</h3>
+        </div>
+        <div>
+            <md-content layout-padding>
+                <textarea ng-model="article.content" name="content" rows="10"  placeholder="Enter article content" style="resize:none;width:100%" id="article_body" required></textarea>
+            </md-content>
+        </div>
+        </form>
+        <div layout="row">
+          <div flex-gt-sm="40" flex-sm="40" flex-xs="40">
+          </div>
+          <div flex="20" flex-sm="20" flex-xs="20" layout-align="center center">
+            <md-button ng-click="summarizeClicked()" ng-disabled="articleForm.$invalid" class="md-raised md-primary">Button</md-button>
+          </div>
+          <div flex="40" flex-sm="40" flex-xs="40">
+          </div>
+        </div>
+      </md-card>
+      <md-card ng-show="showCard1">
+        <md-card-title>
+        <span class="md-headline" id="card-title1"></span>
+        </md-card-title>
+        <md-card-content> 
+        <div ng-bind-html="customCode" id="custom-div"></div>
+        </md-card-content>
+      </md-card>
+      <md-card layout-padding ng-show="showSummaryCard">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" id="card-title"></span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p id="card-contents"></p>
+        </md-card-content>
+      </md-card>
+      <md-card layout-padding ng-controller="BarCtrl">
+        <md-card-title>
+          <md-card-title-text>
+          <h3>Results</h3>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <canvas id="myChart" width="400" height="400"></canvas>  
+        </md-card-content>
+      </md-card>
+      <md-card layout-padding ng-show="showCommentCard">
+        <form name="commentForm">
+        <div layout="column">
+          <div>
+            <h3>Rating</h3>
+          </div>
+          <div>
+            <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
+          </div>
+          <div>
+            <md-input-container class="md-block">
+              <label>Comment</label>
+              <input md-maxlength="200" ng-model="article.comment" id="article_comment">
+              <div ng-messages="commentForm.comment.$error">
+              <div ng-message="md-maxlength">The description must be less than 200 characters long.</div>
+              </div>
+            </md-input-container>
+         </div>
+          <div layout="row">
+            <div flex="40">
+            </div>
+            <div flex="20">
+              <md-button ng-click="feedbackClicked()" ng-disabled="commentForm.$invalid" class="md-raised md-primary">Button</md-button>
+            </div>
+            <div flex="40">
+            </div>
+          </div>
+        </div>
+      </form>
+      </md-card>
+      <md-card class="contact">
+        <md-card-title>
+          <md-card-title-text>
+            <h3 class="white_text">Contact</h3>
+              <span layout="row"><hr flex/></span> 
+              <h4 class="white_text">Ameya Kulkarni<br>kulkarni.ameya11@gmail.com<br></h4>
+              <h4 class="white_text">Suraj Jagtap<br>jsurajbaramati@gmail.com</h4>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+        </md-card-content>
+      </md-card>
+      </div>
+        <div flex-gt-sm="10" flex-sm="0" flex-xs="0">
+        </div>
+  </div>
+    <md-button class="md-fab md-primary md-raised md-fab-bottom-right"  ng-click="reloadPage()" aria-label="Refresh">
+      <md-icon md-font-library="material-icons">refresh</md-icon>
+    </md-button>
+  </div>
+    <footer>
+<!--       <p style="background-color:#3f51b5;color:white;">
+     <b>Contact:</b><br>
+        Ameya Kulkarni : kulkarni.ameya11@gmail.com<br>
+        Suraj Jagtap   : jsurajbaramati@gmail.com<br>
+      </p> -->
+      <md-toolbar class="md-scroll-shrink">
+          <div layout="row" layout-align="center center" flex>
+            <div>
+            <font size="2">Copyright © 2017 Varta Inc. All rights reserved.</font>
+            </div>
+          </div>
+      </md-toolbar>
+    </footer>
+  </body>
+<!--
+    <div ng-controller="sampleController">
+      {{name}}
+    </div>
+-->
+</html>

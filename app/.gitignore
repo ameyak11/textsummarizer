@@ -1,0 +1,33 @@
+*.pyc
+
+# local TODO notes
+TODO
+
+# coverage files
+*.coverage
+htmlcov
+cover
+
+# temporary files
+*~
+
+# database files
+*.sqlite
+
+# virtualenv environments
+env*/
+
+# build artifacts from python setup.py build or python setup.py install
+build/
+dist/
+*egg*/
+docs/_build
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+#jetbrainsIDE
+.idea/*
+

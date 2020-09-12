@@ -1,0 +1,82 @@
+div.ext-content {
+  padding: 50px;
+  margin: 20px;
+  background-color: #ffffff; }
+
+
+.md-button.md-default-theme.md-accent, .md-button.md-accent {
+  color: #2683c6;
+  
+}
+md-nav-ink-bar, md-nav-bar md-nav-ink-bar{
+  color: #2683c6;
+  background-color: #2683c6;
+}
+
+.tab-content {
+    margin: 20px 0 0 0;
+    text-align:center;
+}
+
+.tab-container {
+    height:120px;
+}
+
+.tab-change-row {
+    text-align:center;
+}
+
+.tab-change-btn {
+    display: inline-block
+}
+html, body {
+  height: 100%;
+}
+#container {
+  background: rgba(38,131,198,0.1);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;   
+  overflow: hidden;
+}
+.rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+}
+ul.rating {
+    display: inline-block;
+}
+.rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.rating .filled {
+    color: red;
+}
+
+.md-button.md-fab.md-fab-bottom-right {
+top: auto;
+right: 20px;
+bottom: 20px;
+left: auto;
+position: fixed;
+}
+
+mark{
+  background-color: rgb(243,243,21);
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.contact{
+  background-color: #3f51b5;
+}
+.white_text{
+  color: white;
+}
