@@ -11,3 +11,9 @@ Enter the Title and the Text content of the news article to get a a summary cont
 
 Following is summary of an example news article from [Sports News](<https://www.nbcdfw.com/news/sports/dallas-mavericks-legends-launch-the-huddle-series-with-panel-discussion-open-to-the-public/2442687/>)
 
+## Input form
+![Input Form](https://github.com/ameyak11/textsummarizer/blob/master/imginput.png)
+
+## Generated Output
+![Output](https://github.com/ameyak11/textsummarizer/blob/master/imgoutput.png)
+
